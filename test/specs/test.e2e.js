@@ -19,28 +19,43 @@ describe('Test Ruparupa Mobile', function() {
         await homePage.clickAllow()
     })
 
+    it('User Login menggunakan username yang salah menggunakan angka', async function() {
+        await loginPage.clickResourceButton()
+        await loginPage.setUsername('4545454')
+        await loginPage.clickLogin()
+        expect(await loginPage.isErrorUsernameDisplayed()).toBe(true)
+    })
+
+    it('User Login menggunakan username yang salah menggunakan huruf', async function() {
+        await loginPage.clickResourceButton()
+        await loginPage.setUsername('qwertyuiop')
+        await loginPage.clickLogin()
+        expect(await loginPage.isErrorUsernameAbjDisplayed()).toBe(true)
+    })
+
+    it('User Login menggunakan username yang salah menggunakan angka dan huruf', async function() {
+        await loginPage.clickResourceButton()
+        await loginPage.setUsername('12345qwerty')
+        await loginPage.clickLogin()
+        expect(await loginPage.isErrorUsernameDisplayed()).toBe(true)
+    })
+
+
     it('User Login menggunakan username dan password yang benar', async function() {
         await loginPage.clickResourceButton()
-        await loginPage.setUsername('085600274942')
+        await loginPage.setUsername('085******942')
         await loginPage.clickLogin()
-        await loginPage.setPassword('Tomcleverley15')
+        await loginPage.setPassword('T*************')
         await loginPage.clickLogin()
     })
 
-    it.skip('User Login menggunakan username yang benar dan password yang salah', async function() {
+    it('User Login menggunakan username yang benar dan password yang salah', async function() {
         await loginPage.clickResourceButton()
         await loginPage.setUsername('085600274942')
         await loginPage.clickLogin()
         await loginPage.setPassword('WrongPassword')
         await loginPage.clickLogin()
         expect(await loginPage.isErrorDisplayed()).toBe(true)
-    })
-
-    it.skip('User Login menggunakan username yang salah', async function() {
-        await loginPage.clickResourceButton()
-        await loginPage.setUsername('4545454')
-        await loginPage.clickLogin()
-        expect(await loginPage.isErrorUsernameDisplayed()).toBe(true);
     })
 
     it('User melakukan pencarian barang', async function() {

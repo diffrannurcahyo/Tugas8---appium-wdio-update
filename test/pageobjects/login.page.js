@@ -5,8 +5,10 @@ class LoginPage {
     get usernameInput() { return $('android.widget.EditText'); }
     get loginButton() { return $('//android.widget.TextView[@text="Lanjutkan"]'); }
     get passwordInput() { return $('//android.widget.EditText[@text="Masukkan kata sandi"]'); }
-    get errorMessage() { return $('//android.widget.TextView[@text="Kata sandi yang kamu masukkan salah."]'); }
+    get errorMessagePassword() { return $('//android.widget.TextView[@text="Kata sandi yang kamu masukkan salah."]'); }
     get errorMessageUsername() { return $('//android.widget.TextView[@text="Pastikan nomor handphone yang kamu masukkan benar"]'); }
+    get errorMessageUsername() { return $('//android.widget.TextView[@text="Pastikan nomor handphone yang kamu masukkan benar"]'); }
+    get errorMessageUsernameAbj() { return $('//android.widget.TextView[@text="Pastikan data yang kamu masukkan benar"]'); }
 
     async clickResourceButton() {
         await this.resourceButton.click()
@@ -27,11 +29,15 @@ class LoginPage {
     }
 
     async isErrorDisplayed() {
-        return this.errorMessage.isDisplayed()
+        return this.errorMessagePassword.isDisplayed()
     }
 
     async isErrorUsernameDisplayed() {
         return this.errorMessageUsername.isDisplayed()
+    }
+
+    async isErrorUsernameAbjDisplayed() {
+        return this.errorMessageUsernameAbj.isDisplayed()
     }
 }
 
