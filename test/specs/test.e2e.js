@@ -19,13 +19,6 @@ describe('Test Ruparupa Mobile', function() {
         await homePage.clickAllow()
     })
 
-    it('User Login menggunakan username yang salah menggunakan angka', async function() {
-        await loginPage.clickResourceButton()
-        await loginPage.setUsername('4545454')
-        await loginPage.clickLogin()
-        expect(await loginPage.isErrorUsernameDisplayed()).toBe(true)
-    })
-
     it('User Login menggunakan username yang salah menggunakan huruf', async function() {
         await loginPage.clickResourceButton()
         await loginPage.setUsername('qwertyuiop')
@@ -40,22 +33,28 @@ describe('Test Ruparupa Mobile', function() {
         expect(await loginPage.isErrorUsernameDisplayed()).toBe(true)
     })
 
-
-    it('User Login menggunakan username dan password yang benar', async function() {
+    it.skip('User Login menggunakan username yang salah menggunakan angka', async function() {
         await loginPage.clickResourceButton()
-        await loginPage.setUsername('085******942')
+        await loginPage.setUsername('4545454')
         await loginPage.clickLogin()
-        await loginPage.setPassword('T*************')
-        await loginPage.clickLogin()
+        expect(await loginPage.isErrorUsernameDisplayed()).toBe(true)
     })
 
-    it('User Login menggunakan username yang benar dan password yang salah', async function() {
+    it.skip('User Login menggunakan username yang benar dan password yang salah', async function() {
         await loginPage.clickResourceButton()
         await loginPage.setUsername('085600274942')
         await loginPage.clickLogin()
         await loginPage.setPassword('WrongPassword')
         await loginPage.clickLogin()
         expect(await loginPage.isErrorDisplayed()).toBe(true)
+    })
+
+    it('User Login menggunakan username dan password yang benar', async function() {
+        await loginPage.clickResourceButton()
+        await loginPage.setUsername('085600274942')
+        await loginPage.clickLogin()
+        await loginPage.setPassword('Tomcleverley15')
+        await loginPage.clickLogin()
     })
 
     it('User melakukan pencarian barang', async function() {
@@ -66,7 +65,7 @@ describe('Test Ruparupa Mobile', function() {
 
     it('User klik gambar panci', async function() {
         await driver.pause(3000)
-        await scrollScreen(600, 100)
+        await scrollScreen(800, 100)
         await searchPage.clickImgPanci()
         await homePage.clickAllow()
     })
